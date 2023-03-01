@@ -46,12 +46,27 @@ const Checkout = (props) => {
     if (!formIsvalid) {
       return;
     }
+
+    props.onConfirm({
+      name: enteredName,
+      street: enteredCity,
+      city: enteredCity,
+      postalCode: enteredPostalCode
+    });
   };
 
-  const nameControlClasses = `${classes.control} ${formInputValidity.name ? '' : classes.invalid}`;
-  const streetControlClasses = `${classes.control} ${formInputValidity.street ? '' : classes.invalid}`;
-  const cityControlClasses = `${classes.control} ${formInputValidity.city ? '' : classes.invalid}`;
-  const postalCodeControlClasses = `${classes.control} ${formInputValidity.postalCode ? '' : classes.invalid}`;
+  const nameControlClasses = `${classes.control} ${
+    formInputValidity.name ? "" : classes.invalid
+  }`;
+  const streetControlClasses = `${classes.control} ${
+    formInputValidity.street ? "" : classes.invalid
+  }`;
+  const cityControlClasses = `${classes.control} ${
+    formInputValidity.city ? "" : classes.invalid
+  }`;
+  const postalCodeControlClasses = `${classes.control} ${
+    formInputValidity.postalCode ? "" : classes.invalid
+  }`;
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
@@ -68,7 +83,9 @@ const Checkout = (props) => {
       <div className={postalCodeControlClasses}>
         <label htmlFor="postal">Postal Code</label>
         <input type="text" id="postal" ref={postalCodeInputRef} />
-        {!formInputValidity.postalCode && <p>Please enter a valid postal code (5 characters long)!</p>}
+        {!formInputValidity.postalCode && (
+          <p>Please enter a valid postal code (5 characters long)!</p>
+        )}
       </div>
       <div className={cityControlClasses}>
         <label htmlFor="city">City</label>
